@@ -1,15 +1,25 @@
-﻿using QuizFinalProject.DataBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuizFinalProject.DataBase.DataAccessLayer;
+using QuizFinalProject.DataBase.Repositories.Interfaces;
 
 namespace QuizFinalProject.Controllers
 {
     public class HomeController : Controller
-    {   
+    {
+        ITestRepository repo;
+        public HomeController(ITestRepository r)
+        {
+            repo = r;
+        }
 
+        public HomeController()
+        {
+                
+        }
         public ActionResult Index()
         {
             ApplicationDbContext dbContext=new ApplicationDbContext();
