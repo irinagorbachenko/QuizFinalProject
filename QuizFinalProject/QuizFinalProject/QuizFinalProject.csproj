@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TestPageController.cs" />
     <Compile Include="DataBase\DataAccessLayer\ApplicationDbContext.cs" />
     <Compile Include="DataBase\Models\Answer.cs" />
     <Compile Include="DataBase\Models\Category.cs" />
@@ -286,6 +287,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\TestPage\TestPage.cshtml" />
+    <Content Include="Views\Home\Tests.cshtml" />
+    <Content Include="Views\TestPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

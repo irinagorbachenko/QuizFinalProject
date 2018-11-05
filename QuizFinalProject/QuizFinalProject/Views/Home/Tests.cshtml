@@ -1,0 +1,84 @@
+﻿
+@model IEnumerable<QuizFinalProject.DataBase.Models.Test>
+@{
+    ViewBag.Title = "Tests";
+}
+
+
+
+@*<h2>Tests</h2>*@
+
+@*<ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + this.Context.User.IsInRole("admin") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>*@
+
+<div class="container">
+
+    <!-- Page Heading -->
+    <h1 class="my-4">
+
+        Available Tests
+        <br/>
+        <small>Tests List</small>
+
+    </h1>
+
+
+
+
+    <div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">@item.TestName</a>
+                    </h4>
+                    <p class="card-text">Category: @item.Category.CategoryName</p>
+                    <p class="card-text">Duration time: @item.DurationTime</p>
+                    <p class="card-text">Questions: @item.Questions.Count</p>
+                    <p class="card-text">Complexity: @item.Complexity</p>
+                    <p class="card-text">Description: @item.Description</p>
+                    @Html.ActionLink("Start Test", "TestPage", "TestPage", new { id = item.Id },new { @class = " btn btn-primary btn-sm" } )
+
+                </div>
+                
+            </div>
+
+        </div>
+    }
+
+    </div>
+    <!-- /.row -->
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

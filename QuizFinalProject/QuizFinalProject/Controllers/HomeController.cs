@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using QuizFinalProject.DataBase.DataAccessLayer;
+using QuizFinalProject.DataBase.Models;
 using QuizFinalProject.DataBase.Repositories.Classes;
 using QuizFinalProject.DataBase.Repositories.Interfaces;
 
@@ -12,17 +14,17 @@ namespace QuizFinalProject.Controllers
 {
     public class HomeController : Controller
     {
-        ITestRepository repo;
+        ITestRepository _testRepository;
         public HomeController(ITestRepository r)
         {
-            repo = r;
+            _testRepository = r;
         }
 
         //public HomeController()
         //{
         //    IKernel ninjectKernel = new StandardKernel();
         //    ninjectKernel.Bind<ITestRepository>().To<TestRepository>();
-        //    repo = ninjectKernel.Get<ITestRepository>();
+        //    _testRepository = ninjectKernel.Get<ITestRepository>();
         //}
         public ActionResult Index()
         {
@@ -45,5 +47,16 @@ namespace QuizFinalProject.Controllers
 
             return View();
         }
+
+        public ActionResult Tests()
+        {
+
+            var a = _testRepository.List().ToList();
+
+
+            return View(_testRepository.List());
+        }
+
+       
     }
 }

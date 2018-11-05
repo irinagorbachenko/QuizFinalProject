@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model QuizFinalProject.DataBase.Models.Test
+@{
+    ViewBag.Title = "TestPage";
+}
+
+
+
+
+@foreach (var currentQuestion  in Model.Questions)
+    {
+<div>
+    <label>@currentQuestion.QuestionText</label>
+    <div>
+        @foreach (var answer in currentQuestion.Answers)
+        {
+            if(currentQuestion.Answers.Count(answer1 =>answer1.IsRight)>1)
+            {
+                <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id=@answer.Id>
+                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                </div>
+            }
+            else
+            {
+                <div class="custom-control custom-radio">
+                    <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                </div>
+            }
+        }
+    </div>
+
+    <label data-role="error" id="radio-0000000a-error-acc" data-is-empty="1"></label>
+   
+</div>
+    }
+
+
+
+
+
+
