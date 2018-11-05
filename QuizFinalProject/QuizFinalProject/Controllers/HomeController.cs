@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 using QuizFinalProject.DataBase.DataAccessLayer;
+using QuizFinalProject.DataBase.Repositories.Classes;
 using QuizFinalProject.DataBase.Repositories.Interfaces;
 
 namespace QuizFinalProject.Controllers
@@ -16,10 +18,12 @@ namespace QuizFinalProject.Controllers
             repo = r;
         }
 
-        public HomeController()
-        {
-                
-        }
+        //public HomeController()
+        //{
+        //    IKernel ninjectKernel = new StandardKernel();
+        //    ninjectKernel.Bind<ITestRepository>().To<TestRepository>();
+        //    repo = ninjectKernel.Get<ITestRepository>();
+        //}
         public ActionResult Index()
         {
             ApplicationDbContext dbContext=new ApplicationDbContext();
