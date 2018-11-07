@@ -35,7 +35,7 @@ namespace QuizFinalProject.DataBase.Repositories.Classes
     {
 
         return _dbContext.Tests.Include(test => test.Questions.Select(y => y.Answers))
-            .FirstOrDefault(test => test.Id == id);
+            .FirstOrDefault(test => test.TestId == id);
     }
 
     protected void Dispose(bool disposing)

@@ -9,14 +9,14 @@
 @using (Html.BeginForm("TestResult", "TestPage"))
 {
     /// responcing to  server.
-    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.TestId)
 
     for (int i = 0; i < Model.Questions.Count; i++)
     {
         <p>@Model.Questions[i].QuestionText</p>
 
         <br />
-        @Html.HiddenFor(m => m.Questions[i].Id)
+        @Html.HiddenFor(m => m.Questions[i].QuestionId)
 
 
         for (int j = 0; j < Model.Questions[i].Answers.Count; j++)
@@ -24,7 +24,7 @@
             if (@Model.Questions[i].Answers.Count(answer1 => answer1.IsRight) > 1)
             {
                 @Html.CheckBoxFor(m => m.Questions[i].Answers[j].IsRight) ///Checkbox
-                @Html.HiddenFor(m => m.Questions[i].Answers[j].Id) ///AnswerId
+                @Html.HiddenFor(m => m.Questions[i].Answers[j].AnswerId) ///AnswerId
                 @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
 
                 <br />
@@ -33,7 +33,7 @@
             else
             {
                 @Html.RadioButtonFor(m => m.Questions[i].Answers[0].IsRight, true) ///Checkbox
-                @Html.HiddenFor(m => m.Questions[i].Answers[j].Id) ///AnswerId
+                @Html.HiddenFor(m => m.Questions[i].Answers[j].AnswerId) ///AnswerId
                 @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
 
                 <br />

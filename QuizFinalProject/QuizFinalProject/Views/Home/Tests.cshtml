@@ -45,7 +45,7 @@
                     <p class="card-text">Questions: @item.Questions.Count</p>
                     <p class="card-text">Complexity: @item.Complexity</p>
                     <p class="card-text">Description: @item.Description</p>
-                    @Html.ActionLink("Start Test", "TestPage", "TestPage", new { id = item.Id },new { @class = " btn btn-primary btn-sm" } )
+                    @Html.ActionLink("Start Test", "TestPage", "TestPage", new { id = item.TestId },new { @class = " btn btn-primary btn-sm" } )
 
                 </div>
                 
