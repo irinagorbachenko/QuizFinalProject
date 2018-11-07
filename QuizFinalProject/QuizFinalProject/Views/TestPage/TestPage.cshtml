@@ -6,37 +6,157 @@
 }
 
 
+@using (Html.BeginForm("TestResult", "TestPage"))
+{
+    /// responcing to  server.
+    @Html.HiddenFor(m => m.Id)
 
-
-@foreach (var currentQuestion  in Model.Questions)
+    for (int i = 0; i < Model.Questions.Count; i++)
     {
-<div>
-    <label>@currentQuestion.QuestionText</label>
-    <div>
-        @foreach (var answer in currentQuestion.Answers)
+        <p>@Model.Questions[i].QuestionText</p>
+
+        <br />
+        @Html.HiddenFor(m => m.Questions[i].Id)
+
+
+        for (int j = 0; j < Model.Questions[i].Answers.Count; j++)
         {
-            if(currentQuestion.Answers.Count(answer1 =>answer1.IsRight)>1)
+            if (@Model.Questions[i].Answers.Count(answer1 => answer1.IsRight) > 1)
             {
-                <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id=@answer.Id>
-                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                </div>
+                @Html.CheckBoxFor(m => m.Questions[i].Answers[j].IsRight) ///Checkbox
+                @Html.HiddenFor(m => m.Questions[i].Answers[j].Id) ///AnswerId
+                @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
+
+                <br />
+
             }
             else
             {
-                <div class="custom-control custom-radio">
-                    <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                </div>
-            }
+                @Html.RadioButtonFor(m => m.Questions[i].Answers[0].IsRight, true) ///Checkbox
+                @Html.HiddenFor(m => m.Questions[i].Answers[j].Id) ///AnswerId
+                @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
+
+                <br />
+            } @Html.HiddenFor(m => m.Questions[i].Answers[j].AnswerText)
         }
+        <br />
+
+    }
+    @*@Html.HiddenFor(m => m.TestId)///Test id
+
+        for (int i = 0; i < Model.AllQuestions.Count; i++)
+        {
+            <p>@Model.AllQuestions[i].QuestionText</p>//QuestionText show only.
+
+            @Html.HiddenFor(m => m.AllQuestions[i].QuestionText)///QuestionText
+
+
+            <br />
+            @Html.HiddenFor(m => m.AllQuestions[i].QuestionId)///QuestionId
+            for (int j = 0; j < Model.AllQuestions[i].Answers.Count; j++)
+            {
+                //=========CheckBox======================
+                @Html.CheckBoxFor(m => m.AllQuestions[i].Answers[j].IsRight)///Checkbox
+                @Html.HiddenFor(m => m.AllQuestions[i].Answers[j].Id)///AnswerId
+                @Html.LabelFor(m => m.AllQuestions[i].Answers[j].IsRight, Model.AllQuestions[i].Answers[j].Text)//CheckBox text
+                <br />
+            }
+            <br />
+        }*@
+
+
+    <div class="bottombuttonsecurity">
+        <button type="submit" id="btnSave" name="Command" value="Save" style="background-color: #3d3c4c;border-radius: 8px;color: white;padding: 5px;border: 1px solid #3d3c4c;">Save</button>
     </div>
 
-    <label data-role="error" id="radio-0000000a-error-acc" data-is-empty="1"></label>
-   
-</div>
+
+}
+
+
+
+
+@*@using (Html.BeginForm("TestResult","TestPage",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+        @foreach (var currentQuestion in Model.Questions)
+        {
+            <div>
+                <label>@currentQuestion.QuestionText</label>
+                <div>
+                    @foreach (var answer in currentQuestion.Answers)
+                    {
+                        if (currentQuestion.Answers.Count(answer1 => answer1.IsRight) > 1)
+                        {
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id=@answer.Id>
+                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="custom-control custom-radio">
+                                @Html.RadioButton(currentQuestion.Id.ToString(), answer.Id)
+                                <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                            </div>
+                        }
+                    }
+                </div>
+
+
+            </div>
+
+
+        }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
     }
 
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    @foreach (var currentQuestion in Model.Questions)
+        {
+            <div>
+                <label>@currentQuestion.QuestionText</label>
+                <div>
+                    @foreach (var answer in currentQuestion.Answers)
+                    {
+                        if (currentQuestion.Answers.Count(answer1 => answer1.IsRight) > 1)
+                        {
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id=@answer.Id>
+                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
+                            </div>
+                        }
+                    }
+                </div>
+
+
+            </div>
+
+
+        }
+        <button type="button" class="btn btn-primary btn-sm">Submit</button>*@
 
 
 

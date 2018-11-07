@@ -11,7 +11,7 @@ namespace QuizFinalProject.DataBase.Models
         public string TestName { get; set; }
         public Category Category { get; set; }
         public string Description { get; set; }
-        public ICollection<Question> Questions { get; set; }
+        public List<Question> Questions { get; set; }
         public TimeSpan DurationTime { get; set; }
         public int Complexity { get; set; }
 

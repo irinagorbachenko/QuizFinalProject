@@ -4,7 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.Provider;
+using Newtonsoft.Json.Serialization;
 using QuizFinalProject.DataBase.Models;
+using QuizFinalProject.DataBase.Models.ViewModels;
 using QuizFinalProject.DataBase.Repositories.Interfaces;
 
 namespace QuizFinalProject.Controllers
@@ -35,7 +38,54 @@ namespace QuizFinalProject.Controllers
             {
                 return HttpNotFound();
             }
+            //TestsViewModel testViewModel = new TestsViewModel();
+
+            //List<Question> checkBoxList = test.Questions.Where(IsMultiAnswer).ToList();
+                      
+            //    testViewModel.CheckBoxQuestion.AddRange(checkBoxList);
+
+            //List<Question>radioButtonList=test.Questions.Where(IsSingleAnswer).ToList();
+
+            //testViewModel.RadioButtonQuestion.AddRange(radioButtonList);
+
+
+          
+            //return View();
             return View(test);
         }
+
+        private bool IsMultiAnswer(Question question)
+        {
+            var a = question.Answers.Where(answer => answer.IsRight);
+            if (a.Count() > 1)
+                return true;
+          
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool IsSingleAnswer(Question question)
+        {
+            var a = question.Answers.Where(answer => answer.IsRight);
+            if (a.Count() == 1)
+                return true;
+
+            else
+            {
+                return false;
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult TestResult(Test p)
+        {
+
+
+            return View();
+        }
+
     }
 }

@@ -216,6 +216,7 @@
     <Compile Include="DataBase\Models\Question.cs" />
     <Compile Include="DataBase\Models\Test.cs" />
     <Compile Include="DataBase\DataAccessLayer\QuizInitializer.cs" />
+    <Compile Include="DataBase\Models\ViewModels\TestsViewModel.cs" />
     <Compile Include="DataBase\Repositories\Classes\TestRepository.cs" />
     <Compile Include="DataBase\Repositories\Interfaces\ITestRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -290,6 +291,8 @@
     <Content Include="Views\TestPage\TestPage.cshtml" />
     <Content Include="Views\Home\Tests.cshtml" />
     <Content Include="Views\TestPage\Index.cshtml" />
+    <Content Include="Views\TestPage\TestResult.cshtml" />
+    <Content Include="Views\TestPage\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
