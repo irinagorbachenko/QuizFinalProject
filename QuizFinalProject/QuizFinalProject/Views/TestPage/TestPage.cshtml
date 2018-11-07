@@ -32,7 +32,7 @@
             }
             else
             {
-                @Html.RadioButtonFor(m => m.Questions[i].Answers[0].IsRight, true) ///Checkbox
+                @Html.RadioButtonFor(m => m.Questions[i].RightAnswerId, Model.Questions[i].Answers[j].AnswerId) ///Checkbox
                 @Html.HiddenFor(m => m.Questions[i].Answers[j].AnswerId) ///AnswerId
                 @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
 

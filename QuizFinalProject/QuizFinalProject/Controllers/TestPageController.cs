@@ -80,8 +80,21 @@ namespace QuizFinalProject.Controllers
 
 
         [HttpPost]
-        public ActionResult TestResult(Test p)
+        public ActionResult TestResult(Test userTest)
         {
+            Test currentTest = _testRepository.GetById(userTest.TestId);
+            foreach (Question item in userTest.Questions)
+            {
+               List< Question> a = currentTest.Questions.Where(question =>
+                {
+                    if(item.QuestionId==question.QuestionId)
+
+                    return true;
+
+                    return false;
+                }).ToList();
+
+            }
 
 
             return View();

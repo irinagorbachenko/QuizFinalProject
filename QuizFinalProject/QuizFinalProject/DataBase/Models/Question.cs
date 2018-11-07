@@ -8,7 +8,7 @@ namespace QuizFinalProject.DataBase.Models
         public string QuestionText { get; set; }
         public List<Answer> Answers { get; set; }
         public Test Test { get; set; }
-
+        public  int? RightAnswerId { get; set; }
         public Question()
         {
             Answers = new List<Answer>();
