@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using Microsoft.Owin.Security.Provider;
 using Newtonsoft.Json.Serialization;
 using QuizFinalProject.DataBase.Models;
 using QuizFinalProject.DataBase.Models.ViewModels;
 using QuizFinalProject.DataBase.Repositories.Interfaces;
+using Answer = QuizFinalProject.DataBase.Models.Answer;
 
 namespace QuizFinalProject.Controllers
 {
     public class TestPageController : Controller
     {
-        private ITestRepository _testRepository;
+        public int Results = 0;
+        private readonly ITestRepository _testRepository;
 
         public TestPageController(ITestRepository r)
         {
@@ -38,67 +42,92 @@ namespace QuizFinalProject.Controllers
             {
                 return HttpNotFound();
             }
-            //TestsViewModel testViewModel = new TestsViewModel();
-
-            //List<Question> checkBoxList = test.Questions.Where(IsMultiAnswer).ToList();
-                      
-            //    testViewModel.CheckBoxQuestion.AddRange(checkBoxList);
-
-            //List<Question>radioButtonList=test.Questions.Where(IsSingleAnswer).ToList();
-
-            //testViewModel.RadioButtonQuestion.AddRange(radioButtonList);
+        
 
 
-          
-            //return View();
+
             return View(test);
         }
 
-        private bool IsMultiAnswer(Question question)
+       
+        public static double GetPercent(int rightAnswers, int questionQuantity)
         {
-            var a = question.Answers.Where(answer => answer.IsRight);
-            if (a.Count() > 1)
-                return true;
-          
-            else
-            {
-                return false;
-            }
+            if (rightAnswers == 0) return 0;
+            double result= (double)rightAnswers / questionQuantity * 100;
+            return result;
         }
 
-        private bool IsSingleAnswer(Question question)
-        {
-            var a = question.Answers.Where(answer => answer.IsRight);
-            if (a.Count() == 1)
-                return true;
-
-            else
-            {
-                return false;
-            }
-        }
+       
 
 
         [HttpPost]
         public ActionResult TestResult(Test userTest)
         {
-            Test currentTest = _testRepository.GetById(userTest.TestId);
+            int rightAnswers = 0;
+            Test TestFromDb = _testRepository.GetById(userTest.TestId);
             foreach (Question item in userTest.Questions)
             {
-               List< Question> a = currentTest.Questions.Where(question =>
-                {
-                    if(item.QuestionId==question.QuestionId)
 
-                    return true;
+                Question questionDb = TestFromDb.Questions.First(question =>
+                {
+                    if (item.QuestionId == question.QuestionId)
+                    {
+                        return true;
+                    }
 
                     return false;
-                }).ToList();
+
+                });
+
+                List<Answer> rightAnswerFromDb = questionDb.Answers.Where(answer => answer.IsRight).ToList();
+                List<Answer> rightAnswerFromUser = item.Answers.Where(answer => answer.IsRight).ToList();
+
+
+                if (rightAnswerFromDb.Count != 1)
+                {
+                    if (rightAnswerFromDb.Count == rightAnswerFromUser.Count)
+                    {
+                        int rightAnswerCounter = 0;
+
+                        foreach (var itemDb in rightAnswerFromDb)
+                        {
+                            foreach (var itemUser in rightAnswerFromUser)
+                            {
+                                if (itemDb.IsRight == itemUser.IsRight && itemDb.AnswerId == itemUser.AnswerId)
+                                {
+                                    rightAnswerCounter++;
+                                }
+
+                            }
+
+                        }
+
+                        if (rightAnswerCounter == rightAnswerFromDb.Count)
+                        {
+                            rightAnswers++;
+                        }
+                    }
+                }
+                else
+                    {
+                        if (rightAnswerFromDb[0].AnswerId==item.RightAnswerId)
+                        {
+                            rightAnswers++;
+                        }
+                    }
+                
+               
 
             }
 
-
-            return View();
+           
+            var questionQuantity = TestFromDb.Questions.Count();
+          
+            var percentResult= GetPercent(rightAnswers, questionQuantity);
+          
+            return View(percentResult);
         }
 
     }
+    
 }

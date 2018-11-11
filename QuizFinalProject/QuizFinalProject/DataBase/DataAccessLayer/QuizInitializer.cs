@@ -23,7 +23,7 @@ namespace QuizFinalProject.DataBase.DataAccessLayer
             
 
 
-            Test test = new Test { TestName = "QA Basic",Complexity = 3,DurationTime = new TimeSpan(0, 25, 15),Description = "his article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, " };
+            Test test = new Test { TestName = "QA Basic",Complexity = 3,DurationTime = new TimeSpan(0, 25, 15), Description = "his article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, " };
             Test test1 = new Test { TestName = "C# Basic", Complexity = 2, DurationTime = new TimeSpan(0, 60, 0), Description = "his article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, " };
             Test test2 = new Test { TestName = "WinForms Basic", Complexity = 1, DurationTime = new TimeSpan(0, 90, 0), Description = "his article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, " };
             test.Questions.Add(question);

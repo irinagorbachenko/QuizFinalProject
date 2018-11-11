@@ -6,10 +6,15 @@
 }
 
 
+
 @using (Html.BeginForm("TestResult", "TestPage"))
 {
     /// responcing to  server.
     @Html.HiddenFor(m => m.TestId)
+
+
+    <div id="counter"></div>
+
 
     for (int i = 0; i < Model.Questions.Count; i++)
     {
@@ -41,28 +46,9 @@
         }
         <br />
 
+
     }
-    @*@Html.HiddenFor(m => m.TestId)///Test id
 
-        for (int i = 0; i < Model.AllQuestions.Count; i++)
-        {
-            <p>@Model.AllQuestions[i].QuestionText</p>//QuestionText show only.
-
-            @Html.HiddenFor(m => m.AllQuestions[i].QuestionText)///QuestionText
-
-
-            <br />
-            @Html.HiddenFor(m => m.AllQuestions[i].QuestionId)///QuestionId
-            for (int j = 0; j < Model.AllQuestions[i].Answers.Count; j++)
-            {
-                //=========CheckBox======================
-                @Html.CheckBoxFor(m => m.AllQuestions[i].Answers[j].IsRight)///Checkbox
-                @Html.HiddenFor(m => m.AllQuestions[i].Answers[j].Id)///AnswerId
-                @Html.LabelFor(m => m.AllQuestions[i].Answers[j].IsRight, Model.AllQuestions[i].Answers[j].Text)//CheckBox text
-                <br />
-            }
-            <br />
-        }*@
 
 
     <div class="bottombuttonsecurity">
@@ -75,88 +61,61 @@
 
 
 
-@*@using (Html.BeginForm("TestResult","TestPage",FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-        @foreach (var currentQuestion in Model.Questions)
-        {
-            <div>
-                <label>@currentQuestion.QuestionText</label>
-                <div>
-                    @foreach (var answer in currentQuestion.Answers)
-                    {
-                        if (currentQuestion.Answers.Count(answer1 => answer1.IsRight) > 1)
-                        {
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id=@answer.Id>
-                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                            </div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            
+            var defaultTimer = @Model.DurationTime,
+                callback = function () {
+                    // Will be executed when the timer finishes
+                    alert("You are run out of time");
+                    window.location.href = '/Account/Login';
+
+                    return;
+                };
+
+            var counter = 1, timer,
+                match = document.location.href.match(/[\?|&]timer=(\d+)/i),
+                totalTime = match ? match[1] : defaultTimer;
+            var s;
+            timer = setInterval(function () {
+                if (totalTime != -1 && !isNaN(totalTime)) {
+                    val = 'Remaining time: ' + (function () {
+                        var m = Math.floor(totalTime / 60);
+                        if (m < 10) {
+                            return '0'.concat(m);
                         }
-                        else
-                        {
-                            <div class="custom-control custom-radio">
-                                @Html.RadioButton(currentQuestion.Id.ToString(), answer.Id)
-                                <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                            </div>
+                        else {
+                            return m;
                         }
-                    }
-                </div>
-
-
-            </div>
-
-
-        }
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-
-    @foreach (var currentQuestion in Model.Questions)
-        {
-            <div>
-                <label>@currentQuestion.QuestionText</label>
-                <div>
-                    @foreach (var answer in currentQuestion.Answers)
-                    {
-                        if (currentQuestion.Answers.Count(answer1 => answer1.IsRight) > 1)
-                        {
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id=@answer.Id>
-                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                            </div>
+                    })() + ':' + (function () {
+                        s = totalTime % 60;
+                        if (s < 10) {
+                            return '0'.concat(s);
                         }
-                        else
-                        {
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id=@answer.Id name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for=@answer.Id>@answer.AnswerText</label>
-                            </div>
+                        else {
+                            return s;
                         }
-                    }
-                </div>
+                    })();
 
+                    $('#counter').html(val);
+                    totalTime--;
+                }
+                else {
+                    window.clearInterval(timer);
+                    timer = null;
+                    callback();
+                }
+            }, 1000);
+        });
 
-            </div>
+    </script>
+}
 
-
-        }
-        <button type="button" class="btn btn-primary btn-sm">Submit</button>*@
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
 
 
 
