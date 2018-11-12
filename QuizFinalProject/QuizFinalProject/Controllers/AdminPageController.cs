@@ -26,20 +26,20 @@ namespace QuizFinalProject.Controllers
             return View(testList);
         }
 
-        
+
 
         public ActionResult AddQuestion(AddQuestionViewModel newQuestion)
         {
-            if (newQuestion.Question!=null)
+            if (newQuestion.Question != null)
             {
-                
-           
-            if (ModelState.IsValid)
-            {
-                var currentTest = _testRepositoryService.GetById(newQuestion.TestId);
-                currentTest.Questions.Add(newQuestion.Question);                
-                _testRepositoryService.Save();
-                return RedirectToAction("Index", new AddQuestionViewModel() { TestId = newQuestion.TestId });
+
+
+                if (ModelState.IsValid)
+                {
+                    var currentTest = _testRepositoryService.GetById(newQuestion.TestId);
+                    currentTest.Questions.Add(newQuestion.Question);
+                    _testRepositoryService.Save();
+                    return RedirectToAction("Index", new AddQuestionViewModel() { TestId = newQuestion.TestId });
                 }
             }
             return View(newQuestion);
@@ -60,7 +60,7 @@ namespace QuizFinalProject.Controllers
                 _testRepositoryService.Insert(p);
                 _testRepositoryService.GetById(p.TestId);
                 _testRepositoryService.Save();
-                return RedirectToAction("AddQuestion",new AddQuestionViewModel(){TestId = p.TestId});
+                return RedirectToAction("AddQuestion", new AddQuestionViewModel() { TestId = p.TestId });
             }
 
             return View(p);
@@ -79,7 +79,7 @@ namespace QuizFinalProject.Controllers
 
             return View(test);
         }
-       
+
 
         public ActionResult Delete(int? id)
         {
@@ -108,30 +108,36 @@ namespace QuizFinalProject.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]       
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
-                 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = _testRepositoryService.GetById(id);          
+            Test test = _testRepositoryService.GetById(id);
             return View(test);
         }
 
-        [HttpPost]       
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Test p)
         {
             if (ModelState.IsValid)
             {
-                 Test test = _testRepositoryService.GetById(p.TestId);
+
                 _testRepositoryService.Update(p);
                 _testRepositoryService.Save();
+                var a = p.Questions.FirstOrDefault(question => question.Test.TestId == p.TestId);
 
+                return RedirectToAction("EditQuestions",
+                    new AddQuestionViewModel()
+                    {
+                        TestId = p.TestId,
+                        Question = p.Questions.FirstOrDefault(question => question.Test.TestId == p.TestId)
+                    });
 
-                return RedirectToAction("EditQuestions",  p.TestId );
                 //return View(p);
             }
 
@@ -141,13 +147,17 @@ namespace QuizFinalProject.Controllers
 
         public ActionResult EditQuestions(AddQuestionViewModel editQuestion)
         {
-            
-                    var currentTest = _testRepositoryService.GetById(editQuestion.TestId);
-                    _testRepositoryService.Update(editQuestion);                  
-                    _testRepositoryService.Save();
 
+            if (editQuestion.Question != null)
+            {
+                var currentTest = _testRepositoryService.GetById(editQuestion.TestId);
+                Test test = _testRepositoryService.GetById(editQuestion.TestId);
+                test.Questions.Add(editQuestion.Question);
+                //  _testRepositoryService.Update(editQuestion);                  
+                _testRepositoryService.Save();
 
-            return RedirectToAction("Index");
+            }
+            return View(editQuestion);
 
         }
 

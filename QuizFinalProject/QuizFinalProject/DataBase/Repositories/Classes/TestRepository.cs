@@ -32,7 +32,7 @@ namespace QuizFinalProject.DataBase.Repositories.Classes
         
         public Test Get(int id)
         {
-         
+        
             return _dbContext.Set<Test>().Include(test => test.Category).FirstOrDefault(test => test.TestId == id);
         }
 

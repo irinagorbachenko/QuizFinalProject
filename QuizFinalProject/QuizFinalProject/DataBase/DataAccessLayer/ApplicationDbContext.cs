@@ -32,6 +32,6 @@ namespace QuizFinalProject.DataBase.DataAccessLayer
                 return new ApplicationDbContext();
             }
 
-        //public System.Data.Entity.DbSet<QuizFinalProject.DataBase.Models.ApplicationUser> ApplicationUsers { get; set; }
+       
     }
     }

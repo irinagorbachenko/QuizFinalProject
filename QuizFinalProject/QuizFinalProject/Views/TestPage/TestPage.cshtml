@@ -67,7 +67,7 @@
     <script type="text/javascript">
         $(function () {
             
-            var defaultTimer = 25,
+            var defaultTimer = @Model.DurationTime.TotalSeconds,
                 callback = function () {
                     // Will be executed when the timer finishes
                     alert("You are run out of time");

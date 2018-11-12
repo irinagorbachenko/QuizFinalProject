@@ -30,7 +30,7 @@ namespace QuizFinalProject.Controllers
         {
             ApplicationDbContext dbContext=new ApplicationDbContext();
             dbContext.Answers.ToList();
-
+         //var z=dbContext.Users.ToList();
             return View();
         }
 
