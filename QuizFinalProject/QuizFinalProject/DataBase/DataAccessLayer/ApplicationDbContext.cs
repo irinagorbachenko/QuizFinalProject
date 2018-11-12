@@ -19,16 +19,19 @@ namespace QuizFinalProject.DataBase.DataAccessLayer
                 Database.SetInitializer<ApplicationDbContext>(new QuizInitializer());
 
             }
-
+           
             public DbSet<Test> Tests { get; set; }
             public DbSet<Answer> Answers { get; set; }
             public DbSet<Question> Questions { get; set; }
             public DbSet<Category> Categories { get; set; }
+           
 
-            public static ApplicationDbContext Create()
+
+        public static ApplicationDbContext Create()
             {
                 return new ApplicationDbContext();
             }
 
-        }
+        //public System.Data.Entity.DbSet<QuizFinalProject.DataBase.Models.ApplicationUser> ApplicationUsers { get; set; }
+    }
     }

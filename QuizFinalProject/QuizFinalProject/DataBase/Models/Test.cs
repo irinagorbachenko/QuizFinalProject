@@ -9,11 +9,12 @@ namespace QuizFinalProject.DataBase.Models
 
         public int TestId { get; set; }
         public string TestName { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
         public string Description { get; set; }
         public List<Question> Questions { get; set; }
         public TimeSpan DurationTime { get; set; }
         public int Complexity { get; set; }
+     
 
         public Test()
         {

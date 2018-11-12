@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Web.Security;
 using QuizFinalProject.DataBase.Models;
 
 namespace QuizFinalProject.DataBase.DataAccessLayer
@@ -9,6 +10,10 @@ namespace QuizFinalProject.DataBase.DataAccessLayer
     {
         protected override void Seed(ApplicationDbContext context)
         {
+            
+           
+
+
             //Test test1= new Test { Category= new Category {CategoryName="Development" }, Questions= new List<Question> { new Question() { } }
             Question question = new Question { QuestionText = "Test question 1", };
             Answer answer1 = new Answer { AnswerText = "Yes", IsRight = true };

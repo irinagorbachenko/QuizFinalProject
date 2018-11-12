@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<QuizFinalProject.DataBase.Models.Test>
+
+
+@{
+    ViewBag.Title = "title";
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+@foreach (var item in Model)
+{
+  
+<ul class="list-group">
+    <li class="list-group-item">Test: @item.TestName</li>
+    <li class="list-group-item">Category: @item.Category.CategoryName</li>
+    <li class="list-group-item">Duration time: @item.DurationTime</li>
+    <li class="list-group-item">Questions: @item.Questions.Count</li>
+    <li class="list-group-item">Complexity:@item.Complexity</li>
+    <li class="list-group-item">Description: @item.Description</li>
+
+
+
+</ul>
+     
+    @Html.ActionLink("Details", "Details", "AdminPage", new { id = item.TestId }, new { @class = " btn btn-primary btn-sm" })
+    @Html.ActionLink("Delete", "Delete", "AdminPage", new { id = item.TestId }, new { @class = " btn btn-primary btn-sm" })
+    @Html.ActionLink("Edit", "Edit", "AdminPage", new { id = item.TestId }, new { @class = " btn btn-primary btn-sm" })
+}
