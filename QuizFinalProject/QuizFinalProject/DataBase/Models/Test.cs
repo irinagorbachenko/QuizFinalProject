@@ -26,5 +26,15 @@ namespace QuizFinalProject.DataBase.Models
         {
             throw new NotImplementedException();
         }
+
+        public enum SortState
+        {
+            NameAsc,    // по имени по возрастанию
+            NameDesc,   // по имени по убыванию
+            ComplexityAsc, // по возрасту по возрастанию
+            ComplexityDesc,    // по возрасту по убыванию
+            CategoryAsc, // по компании по возрастанию
+            CategoryDesc // по компании по убыванию
+        }
     }
 }

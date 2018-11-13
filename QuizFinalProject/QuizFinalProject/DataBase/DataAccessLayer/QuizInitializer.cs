@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using QuizFinalProject.DataBase.Models;
 
 namespace QuizFinalProject.DataBase.DataAccessLayer
@@ -10,8 +12,20 @@ namespace QuizFinalProject.DataBase.DataAccessLayer
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            
+
+            IdentityRole admin = new IdentityRole() { Id = "1", Name = "admin" };
+            IdentityRole user = new IdentityRole() { Id = "2", Name = "user" };
+            IdentityUserRole Admin = new IdentityUserRole() { RoleId = "1", UserId = "1" };
+            IdentityUserRole User = new IdentityUserRole() { RoleId = "1", UserId = "2" };
+
+            context.Roles.Add(admin);
+            context.Roles.Add(user);
+            ApplicationUser user1 = new ApplicationUser() { UserName = "Ivan Ivanov", Email = "Ivanov@gmail.com", EmailConfirmed = true, PasswordHash = "Qwerty12", Id = "1" };
+            ApplicationUser user2 = new ApplicationUser() { UserName = "Petr Petrov", Email = "Petrov@gmail.com", EmailConfirmed = true, PasswordHash = "Qwerty11", Id = "2" };
+            context.Users.Add(user1);
+            context.Users.Add(user2);
            
+
 
 
             //Test test1= new Test { Category= new Category {CategoryName="Development" }, Questions= new List<Question> { new Question() { } }

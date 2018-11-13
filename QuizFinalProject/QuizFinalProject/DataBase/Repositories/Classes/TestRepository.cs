@@ -35,6 +35,7 @@ namespace QuizFinalProject.DataBase.Repositories.Classes
         
             return _dbContext.Set<Test>().Include(test => test.Category).FirstOrDefault(test => test.TestId == id);
         }
+        
 
         public virtual Test GetById(int? id)
     {

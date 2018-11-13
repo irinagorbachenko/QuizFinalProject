@@ -22,11 +22,24 @@
 
         Available Tests
         <br/>
-        <small>Tests List</small>
-
+      
     </h1>
 
-
+  
+    <tr> 
+        <th></th> 
+        <th> 
+            @Html.ActionLink(" Sort by Name", "Tests", new { sortOrder=ViewBag.NameSort }) 
+            <br/>
+        </th> 
+        <th>
+            @Html.ActionLink(" Sort by Complexity", "Tests", new { sortOrder = ViewBag.ComplexitySort })
+            <br />
+        </th> 
+        <th> 
+            @Html.ActionLink(" Sort by Category", "Tests", new { sortOrder=ViewBag.CategorySort }) 
+        </th> 
+    </tr>
 
 
     <div class="row">
@@ -34,8 +47,7 @@
     {
         <div class="col-lg-4 col-sm-6 portfolio-item">
 
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card h-100">             
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">@item.TestName</a>
