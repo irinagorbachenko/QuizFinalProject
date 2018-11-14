@@ -15,6 +15,8 @@ using static QuizFinalProject.DataBase.Models.Test;
 
 namespace QuizFinalProject.Controllers
 {
+    //Controller for a showing list of tests on home page
+//All references to the database context are replaced by references to the appropriate repository,
     public class HomeController : Controller
     {
         ITestRepository _testRepositoryService;
@@ -27,9 +29,8 @@ namespace QuizFinalProject.Controllers
         
         public ActionResult Index()
         {
-            ApplicationDbContext dbContext=new ApplicationDbContext();
-            dbContext.Answers.ToList();
-         //var z=dbContext.Users.ToList();
+            
+        
             return View();
         }
 
@@ -47,17 +48,9 @@ namespace QuizFinalProject.Controllers
             return View();
         }
 
-        //public ActionResult Tests()
-        //{
-
-        //    var a = _testRepository.List().ToList();
-
-
-        //    return View(_testRepository.List());
-        //}
-
+        
      
-      
+      //Sorting a tests using ViewData object to get a value from Enum SortState
 
         public ActionResult  Tests(SortState sortOrder = SortState.NameAsc)
         {

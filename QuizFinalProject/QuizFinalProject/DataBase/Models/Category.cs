@@ -2,6 +2,7 @@
 
 namespace QuizFinalProject.DataBase.Models
 {
+    //// Represent a Category entity
     public class Category
     {
         public int Id { get; set; }

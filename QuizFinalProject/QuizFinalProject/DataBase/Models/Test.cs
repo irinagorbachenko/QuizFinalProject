@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace QuizFinalProject.DataBase.Models
-{
+{  //// Represent a Test entity and enum for sorting
     public class Test : IEnumerable
     {
 
@@ -29,12 +29,12 @@ namespace QuizFinalProject.DataBase.Models
 
         public enum SortState
         {
-            NameAsc,    // по имени по возрастанию
-            NameDesc,   // по имени по убыванию
-            ComplexityAsc, // по возрасту по возрастанию
-            ComplexityDesc,    // по возрасту по убыванию
-            CategoryAsc, // по компании по возрастанию
-            CategoryDesc // по компании по убыванию
+            NameAsc,    
+            NameDesc,   
+            ComplexityAsc, 
+            ComplexityDesc,   
+            CategoryAsc, 
+            CategoryDesc 
         }
     }
 }

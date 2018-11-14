@@ -7,7 +7,7 @@ using QuizFinalProject.DataBase.Models;
 using QuizFinalProject.DataBase.Models.ViewModels;
 
 namespace QuizFinalProject.DataBase.Repositories.Interfaces
-{
+{// Service   for a test repository
    public interface ITestRepository
     {
         void Save(Test t);

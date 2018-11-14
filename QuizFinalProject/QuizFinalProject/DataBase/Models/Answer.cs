@@ -1,5 +1,5 @@
 ﻿namespace QuizFinalProject.DataBase.Models
-{
+{   //// Represent a Answer entity
     public class Answer
     {
         public int AnswerId { get; set; }

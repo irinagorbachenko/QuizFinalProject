@@ -10,6 +10,9 @@ using QuizFinalProject.DataBase.Models.ViewModels;
 
 namespace QuizFinalProject.Controllers
 {
+    //Controller for a Admin page operations.
+    //All references to the database context are replaced by references to the appropriate repository,
+    
     public class AdminPageController : Controller
     {
         private readonly ITestRepository _testRepositoryService;
@@ -138,7 +141,7 @@ namespace QuizFinalProject.Controllers
                         Question = p.Questions.FirstOrDefault(question => question.Test.TestId == p.TestId)
                     });
 
-                //return View(p);
+                
             }
 
             return View(p);
@@ -152,8 +155,7 @@ namespace QuizFinalProject.Controllers
             {
                 var currentTest = _testRepositoryService.GetById(editQuestion.TestId);
                 Test test = _testRepositoryService.GetById(editQuestion.TestId);
-                test.Questions.Add(editQuestion.Question);
-                //  _testRepositoryService.Update(editQuestion);                  
+                test.Questions.Add(editQuestion.Question);                             
                 _testRepositoryService.Save();
 
             }

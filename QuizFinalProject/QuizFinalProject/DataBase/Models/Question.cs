@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace QuizFinalProject.DataBase.Models
-{
+{  //// Represent a Question entity
     public class Question
     {
         public int QuestionId { get; set; }

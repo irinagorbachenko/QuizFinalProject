@@ -277,7 +277,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\TestPage\TestPage.cshtml" />
     <Content Include="Views\Home\Tests.cshtml" />
-    <Content Include="Views\TestPage\Index.cshtml" />
     <Content Include="Views\TestPage\TestResult.cshtml" />
     <Content Include="Views\AdminPage\Index.cshtml" />
     <Content Include="Views\AdminPage\Create.cshtml" />

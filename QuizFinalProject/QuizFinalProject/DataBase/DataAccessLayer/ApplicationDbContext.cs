@@ -4,8 +4,9 @@ using QuizFinalProject.DataBase.Models;
 
 namespace QuizFinalProject.DataBase.DataAccessLayer
 {
-   
-        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    // Represents the collection of all entities in the context, or that can be queried from the database,
+    //of a given type. 
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             public ApplicationDbContext()
                 : base("DefaultConnection", throwIfV1Schema: false)

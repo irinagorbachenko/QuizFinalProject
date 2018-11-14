@@ -7,39 +7,12 @@ using QuizFinalProject.DataBase.Models;
 
 namespace QuizFinalProject.DataBase.DataAccessLayer
 {
-
+    // Seeding database after creation
     public class QuizInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
-
-            //var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-
-           
-            //var role1 = new IdentityRole { Name = "admin" };
-            //var role2 = new IdentityRole { Name = "user" };
-
-            
-            //roleManager.Create(role1);
-            //roleManager.Create(role2);
-
-            
-            //var admin = new ApplicationUser { Email = "Irena343@gmail.com", UserName = "Ivan Ivanov" };
-            //string password = "#Qwerty12";
-            //var result = userManager.Create(admin, password);
-
-           
-            //if (result.Succeeded)
-            //{
-                
-            //    userManager.AddToRole(admin.Id, role1.Name);
-               
-            //}
-
-
-
+        
             
             Question question = new Question { QuestionText = "Test question 1", };
             Answer answer1 = new Answer { AnswerText = "Yes", IsRight = true };

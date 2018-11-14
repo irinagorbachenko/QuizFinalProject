@@ -15,6 +15,8 @@ using Answer = QuizFinalProject.DataBase.Models.Answer;
 
 namespace QuizFinalProject.Controllers
 {
+    //Controller for a Test Model.
+//All references to the database context are replaced by references to the appropriate repository
     public class TestPageController : Controller
     {
         public int Results = 0;
@@ -59,7 +61,7 @@ namespace QuizFinalProject.Controllers
 
        
 
-
+        //Test result, and get a percent of right questions
         [HttpPost]
         public ActionResult TestResult(Test userTest)
         {

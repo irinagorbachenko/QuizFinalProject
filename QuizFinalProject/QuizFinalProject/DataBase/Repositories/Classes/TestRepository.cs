@@ -11,6 +11,7 @@ using QuizFinalProject.DataBase.Models.ViewModels;
 
 namespace QuizFinalProject.DataBase.Repositories.Classes
 {
+    //Test repository that implements ITestRepository. Contains CRUD operation , that  get  data from ApplicationDbContext
     public class TestRepository:IDisposable,ITestRepository
 
     {
