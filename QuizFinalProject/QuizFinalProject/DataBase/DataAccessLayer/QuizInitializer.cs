@@ -8,27 +8,39 @@ using QuizFinalProject.DataBase.Models;
 namespace QuizFinalProject.DataBase.DataAccessLayer
 {
 
-    public class QuizInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class QuizInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
 
-            IdentityRole admin = new IdentityRole() { Id = "1", Name = "admin" };
-            IdentityRole user = new IdentityRole() { Id = "2", Name = "user" };
-            IdentityUserRole Admin = new IdentityUserRole() { RoleId = "1", UserId = "1" };
-            IdentityUserRole User = new IdentityUserRole() { RoleId = "1", UserId = "2" };
+            //var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
-            context.Roles.Add(admin);
-            context.Roles.Add(user);
-            ApplicationUser user1 = new ApplicationUser() { UserName = "Ivan Ivanov", Email = "Ivanov@gmail.com", EmailConfirmed = true, PasswordHash = "Qwerty12", Id = "1" };
-            ApplicationUser user2 = new ApplicationUser() { UserName = "Petr Petrov", Email = "Petrov@gmail.com", EmailConfirmed = true, PasswordHash = "Qwerty11", Id = "2" };
-            context.Users.Add(user1);
-            context.Users.Add(user2);
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
            
+            //var role1 = new IdentityRole { Name = "admin" };
+            //var role2 = new IdentityRole { Name = "user" };
+
+            
+            //roleManager.Create(role1);
+            //roleManager.Create(role2);
+
+            
+            //var admin = new ApplicationUser { Email = "Irena343@gmail.com", UserName = "Ivan Ivanov" };
+            //string password = "#Qwerty12";
+            //var result = userManager.Create(admin, password);
+
+           
+            //if (result.Succeeded)
+            //{
+                
+            //    userManager.AddToRole(admin.Id, role1.Name);
+               
+            //}
 
 
 
-            //Test test1= new Test { Category= new Category {CategoryName="Development" }, Questions= new List<Question> { new Question() { } }
+            
             Question question = new Question { QuestionText = "Test question 1", };
             Answer answer1 = new Answer { AnswerText = "Yes", IsRight = true };
             Answer answer2= new Answer { AnswerText = "No", IsRight = false };

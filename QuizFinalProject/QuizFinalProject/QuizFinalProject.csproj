@@ -219,6 +219,7 @@
     <Compile Include="DataBase\DataAccessLayer\QuizInitializer.cs" />
     <Compile Include="DataBase\Models\ViewModels\AddQuestionViewModel.cs" />
     <Compile Include="DataBase\Models\ViewModels\TestsViewModel.cs" />
+    <Compile Include="DataBase\Models\ViewModels\UserViewModel.cs" />
     <Compile Include="DataBase\Repositories\Classes\TestRepository.cs" />
     <Compile Include="DataBase\Repositories\Services\ITestRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -296,6 +297,7 @@
     <None Include="packages.config" />
     <Content Include="Views\AdminPage\AddQuestion.cshtml" />
     <Content Include="Views\AdminPage\EditQuestions.cshtml" />
+    <Content Include="Views\AdminPage\EditUser.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

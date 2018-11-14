@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+
+
+    @foreach (var user in Model)
+    {
+        <p>
+            <strong>@user.Id | @user.Name  </strong>
+        </p>
+    }
+</div>
+

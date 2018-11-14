@@ -12,98 +12,76 @@
 <body background="~/Content/img/b1.jpg">
 <nav class="navbar navbar-expand-lg navbar-dark stylish-color">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Navbar</a>
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Quizzes</a>
 
-  <!-- Collapse button -->
+    <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
             aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    @Html.ActionLink("Quizzes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+    @*@Html.ActionLink("", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
 
-    <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-          <li class="nav-item ">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-          <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-          <li class="nav-item">@Html.ActionLink("Tests", "Tests", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-          @if(this.Context.User.IsInRole("admin")){
-              <li>Admin</li>
-          }
-      
-      @*@if (this.Context.User.IsInRole("admin"))
-      {*@
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                 aria-expanded="false">Admin Menu</a>
-              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item"> @Html.ActionLink("Create a new Test", "Create", "AdminPage", new {area = " "}, new {@class = " dropdown-item"})</a>
-                  <a class="dropdown-item"> @Html.ActionLink("Show Tests List", "Index", "AdminPage", new {area = " "}, new {@class = " dropdown-item"})</a>  
-                  <a class="dropdown-item"> @Html.ActionLink("Block/Unblock Users", "UserEdit", "AdminPage", new {area = " "}, new {@class = " dropdown-item"})</a>  
-              </div>
-          </li>
-      @*}*@
-      </ul>     
-       @Html.Partial("_LoginPartial")
-      <!-- Links -->
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            <li class="nav-item ">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("Tests", "Tests", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            @if(this.Context.User.IsInRole("admin")){
+                <li class="nav-item">@Html.ActionLink("Edit Users", "EditUser", "Manage", new { area = " " }, new { @class = "nav-link" })</li>
+            }
+
+            @if (this.Context.User.IsInRole("admin"))
+            {
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Admin Menu</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item"> @Html.ActionLink("Create a new Test", "Create", "AdminPage", new {area = " "}, new {@class = " dropdown-item"})</a>
+                        <a class="dropdown-item"> @Html.ActionLink("Show Tests List", "Index", "AdminPage", new {area = " "}, new {@class = " dropdown-item"})</a>  
+                
+                    </div>
+                </li>
+            }
+        </ul>     
+        @Html.Partial("_LoginPartial")
+        <!-- Links -->
 
    
-  </div>
-  <!-- Collapsible content -->
+    </div>
+    <!-- Collapsible content -->
 
 </nav>
-<!--/.Navbar-->
-@*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Tests", "Tests", "Home")</li>
-                    @if(this.Context.User.IsInRole("admin")){
-                        <li>Admin</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
+
 <div class="container body-content">
     @RenderBody()
-<hr/>
+    <hr/>
 
     <!-- Footer -->
-    <footer class="page-footer font-small stylish-color">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2018 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
+   
  
-@*<footer>
+    @*<footer>
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>*@
 </div>
+
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
 </body>
+<footer class="page-footer font-small stylish-color">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
 </html>

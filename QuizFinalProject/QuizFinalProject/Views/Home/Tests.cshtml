@@ -6,14 +6,6 @@
 
 
 
-@*<h2>Tests</h2>*@
-
-@*<ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + this.Context.User.IsInRole("admin") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>*@
 
 <div class="container">
 
@@ -29,15 +21,15 @@
     <tr> 
         <th></th> 
         <th> 
-            @Html.ActionLink(" Sort by Name", "Tests", new { sortOrder=ViewBag.NameSort }) 
-            <br/>
+            @Html.ActionLink(" Sort by Name", "Tests", new { sortOrder=ViewBag.NameSort }, new { @class = "btn btn-info " }) 
+           
         </th> 
         <th>
-            @Html.ActionLink(" Sort by Complexity", "Tests", new { sortOrder = ViewBag.ComplexitySort })
-            <br />
+            @Html.ActionLink(" Sort by Complexity", "Tests", new { sortOrder = ViewBag.ComplexitySort },new { @class = "btn btn-info " })
+          
         </th> 
         <th> 
-            @Html.ActionLink(" Sort by Category", "Tests", new { sortOrder=ViewBag.CategorySort }) 
+            @Html.ActionLink(" Sort by Category", "Tests", new { sortOrder=ViewBag.CategorySort }, new { @class = "btn btn-info " }) 
         </th> 
     </tr>
 
@@ -45,7 +37,7 @@
     <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="col-lg-4 col-sm-6 portfolio-item mt-1 mb-1">
 
             <div class="card h-100">             
                 <div class="card-body">
