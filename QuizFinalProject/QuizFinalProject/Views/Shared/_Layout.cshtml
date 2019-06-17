@@ -46,6 +46,13 @@
                     </div>
                 </li>
             }
+            
+        @*@if (this.Context.User.IsInRole("manager"))
+        {
+
+            <li class="nav-item">@Html.ActionLink("Manager Statistic Button", "Index", "Manager", new { area = "" }, new { @class = "nav-link" })</li>
+
+        }*@
         </ul>     
         @Html.Partial("_LoginPartial")
         <!-- Links -->

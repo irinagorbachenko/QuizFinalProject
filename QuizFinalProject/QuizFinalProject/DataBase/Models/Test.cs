@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuizFinalProject.DataBase.Models
 {  //// Represent a Test entity and enum for sorting
@@ -8,9 +9,13 @@ namespace QuizFinalProject.DataBase.Models
     {
 
         public int TestId { get; set; }
+        [Required]
         public string TestName { get; set; }
+        
         public virtual Category Category { get; set; }
+        [Required]
         public string Description { get; set; }
+       
         public List<Question> Questions { get; set; }
         public TimeSpan DurationTime { get; set; }
         public int Complexity { get; set; }
