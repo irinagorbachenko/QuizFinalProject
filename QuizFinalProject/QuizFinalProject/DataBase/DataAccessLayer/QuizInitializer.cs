@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using QuizFinalProject.DataBase.Models;
 
 namespace QuizFinalProject.DataBase.DataAccessLayer
 {
-
-    public class QuizInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    // Seeding database after creation
+    public class QuizInitializer :CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            //Test test1= new Test { Category= new Category {CategoryName="Development" }, Questions= new List<Question> { new Question() { } }
+        
+            
             Question question = new Question { QuestionText = "Test question 1", };
             Answer answer1 = new Answer { AnswerText = "Yes", IsRight = true };
             Answer answer2= new Answer { AnswerText = "No", IsRight = false };
             Answer answer3 = new Answer { AnswerText = "I dont know", IsRight = false };
             Answer answer4 = new Answer { AnswerText = " leave me alone", IsRight = true };
+            Answer answer5 = new Answer { AnswerText = " leave me aloneeee", IsRight = false };
+            question.Answers.Add(answer1);
             question.Answers.Add(answer1);
             question.Answers.Add(answer2);
             question.Answers.Add(answer3);

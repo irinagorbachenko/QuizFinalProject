@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
@@ -9,28 +11,26 @@ using QuizFinalProject.DataBase.DataAccessLayer;
 using QuizFinalProject.DataBase.Models;
 using QuizFinalProject.DataBase.Repositories.Classes;
 using QuizFinalProject.DataBase.Repositories.Interfaces;
+using static QuizFinalProject.DataBase.Models.Test;
 
 namespace QuizFinalProject.Controllers
 {
+    //Controller for a showing list of tests on home page
+//All references to the database context are replaced by references to the appropriate repository,
     public class HomeController : Controller
     {
-        ITestRepository _testRepository;
+        ITestRepository _testRepositoryService;
+
         public HomeController(ITestRepository r)
         {
-            _testRepository = r;
+            _testRepositoryService = r;
         }
 
-        //public HomeController()
-        //{
-        //    IKernel ninjectKernel = new StandardKernel();
-        //    ninjectKernel.Bind<ITestRepository>().To<TestRepository>();
-        //    _testRepository = ninjectKernel.Get<ITestRepository>();
-        //}
+        
         public ActionResult Index()
         {
-            ApplicationDbContext dbContext=new ApplicationDbContext();
-            dbContext.Answers.ToList();
-
+            
+        
             return View();
         }
 
@@ -48,15 +48,44 @@ namespace QuizFinalProject.Controllers
             return View();
         }
 
-        public ActionResult Tests()
+        
+     
+      //Sorting a tests using ViewData object to get a value from Enum SortState
+
+        public ActionResult  Tests(SortState sortOrder = SortState.NameAsc)
         {
+            IEnumerable<Test> tests = _testRepositoryService.List();
 
-            var a = _testRepository.List().ToList();
+          
 
+            ViewData["NameSort"] = sortOrder == SortState.NameAsc ? SortState.NameDesc : SortState.NameAsc;
+            ViewData["ComplexitySort"] = sortOrder == SortState.ComplexityAsc ? SortState.ComplexityDesc : SortState.ComplexityAsc;
+            ViewData["Category"] = sortOrder == SortState.CategoryAsc ? SortState.CategoryDesc : SortState.CategoryAsc;
 
-            return View(_testRepository.List());
+            switch (sortOrder)
+            {
+                case SortState.NameDesc:
+                    tests = tests.OrderByDescending(s => s.TestName);
+                    break;
+                case SortState.CategoryAsc:
+                    tests = tests.OrderBy(s => s.Category.CategoryName);
+                    break;
+                case SortState.CategoryDesc:
+                    tests = tests.OrderByDescending(s => s.Category.CategoryName);
+                    break;
+                case SortState.ComplexityAsc:
+                    tests = tests.OrderBy(s => s.Complexity);
+                    break;
+                case SortState.ComplexityDesc:
+                    tests = tests.OrderByDescending(s => s.Complexity);
+                    break;
+                default:
+                    tests = tests.OrderBy(s => s.TestName);
+                    break;
+            }
+            return View( tests.ToList());
         }
 
-       
     }
 }
+

@@ -15,14 +15,16 @@ using Answer = QuizFinalProject.DataBase.Models.Answer;
 
 namespace QuizFinalProject.Controllers
 {
+    //Controller for a Test Model.
+//All references to the database context are replaced by references to the appropriate repository
     public class TestPageController : Controller
     {
         public int Results = 0;
-        private readonly ITestRepository _testRepository;
+        private readonly ITestRepository _testRepositoryService;
 
         public TestPageController(ITestRepository r)
         {
-            _testRepository = r;
+            _testRepositoryService = r;
         }
         // GET: TestPage
         public ActionResult Index()
@@ -37,7 +39,7 @@ namespace QuizFinalProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = _testRepository.GetById(id);
+            Test test = _testRepositoryService.GetById(id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -59,12 +61,12 @@ namespace QuizFinalProject.Controllers
 
        
 
-
+        //Test result, and get a percent of right questions
         [HttpPost]
         public ActionResult TestResult(Test userTest)
         {
             int rightAnswers = 0;
-            Test TestFromDb = _testRepository.GetById(userTest.TestId);
+            Test TestFromDb = _testRepositoryService.GetById(userTest.TestId);
             foreach (Question item in userTest.Questions)
             {
 

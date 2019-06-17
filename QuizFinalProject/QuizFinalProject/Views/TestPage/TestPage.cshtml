@@ -28,7 +28,7 @@
         {
             if (@Model.Questions[i].Answers.Count(answer1 => answer1.IsRight) > 1)
             {
-                @Html.CheckBoxFor(m => m.Questions[i].Answers[j].IsRight) ///Checkbox
+                @Html.CheckBox($"Questions[{i}].Answers[{j}].IsRight", false, new { value = true }) ///Checkbox
                 @Html.HiddenFor(m => m.Questions[i].Answers[j].AnswerId) ///AnswerId
                 @Html.LabelFor(m => m.Questions[i].Answers[j].IsRight, Model.Questions[i].Answers[j].AnswerText) //CheckBox text
 
@@ -67,9 +67,9 @@
     <script type="text/javascript">
         $(function () {
             
-            var defaultTimer = @Model.DurationTime,
+            var defaultTimer = @Model.DurationTime.TotalSeconds,
                 callback = function () {
-                    // Will be executed when the timer finishes
+                    
                     alert("You are run out of time");
                     window.location.href = '/Account/Login';
 

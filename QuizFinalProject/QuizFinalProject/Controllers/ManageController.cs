@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Provider;
 using QuizFinalProject.DataBase.Models;
+using QuizFinalProject.DataBase.Models.ViewModels;
 
 namespace QuizFinalProject.Controllers
 {
@@ -333,7 +335,20 @@ namespace QuizFinalProject.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        public ActionResult EditUser()
+        {
+            //    var allusers = _userManager.Users.ToList();
+            //    var users = allusers.Where(x => x.Roles.Select(role => role.).Contains("user")).ToList();
+            //    var userVM = users.Select(user => new UserViewModel { Username = user.FullName, Roles = string.Join(",", user.Roles.Select(role => role.Name)) }).ToList();
+
+            //    var admins = allusers.Where(x => x.Roles.Select(role => role.Name).Contains("Admin")).ToList();
+            //    var adminsVM = admins.Select(user => new UserViewModel { Username = user.FullName, Roles = string.Join(",", user.Roles.Select(role => role.Name)) }).ToList();
+            //    var model = new GroupedUserViewModel { Users = userVM, Admins = adminsVM };
+
+            //return View(model);
+            return View();
+    }
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

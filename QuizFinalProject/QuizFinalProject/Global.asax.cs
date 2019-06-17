@@ -21,7 +21,9 @@ namespace QuizFinalProject
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-
+            //This class is called when the application starts. At the end of the method,
+            //a Ninject module is created - the NinjectRegistrations object.
+            //And then using the DependencyResolver.SetResolver () method, the previously created dependency resolver is registered.
             NinjectModule registrations = new NinjectRegistration();
             var kernel = new StandardKernel(registrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));

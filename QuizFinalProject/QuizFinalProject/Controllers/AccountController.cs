@@ -40,6 +40,7 @@ namespace QuizFinalProject.Controllers
             }
         }
 
+        
         public ApplicationUserManager UserManager
         {
             get
